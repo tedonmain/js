@@ -1,7 +1,7 @@
 const {log} = console;
 
 // Parameter Defaults
-function areaOfRectangle(width, height) {
+function areaOfRectangle(width, height = width) {
   return width * height;
 }
 
@@ -16,3 +16,11 @@ log({
   height,
   area: width * height
 });
+
+const areaOfRectangle2 = ( a, b ) => {
+  let width = a;
+  let height = (typeof b === 'number') ? b : a;
+  return width * height;
+};
+
+console.log(areaOfRectangle2(5, 4));

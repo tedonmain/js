@@ -36,7 +36,7 @@ function PersonQuery() {
 }
 
 // Manual iteration
-const query = (new PersonQuery())[Symbol.iterator]();
+const query = new PersonQuery()[Symbol.iterator]();
 console.log(query.next().value);
 console.log(query.next().value);
 console.log(query.next());

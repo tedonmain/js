@@ -8,31 +8,24 @@ function PersonQuery() {
   var recCount = 0;
   var recTotal = persons.length;
   
-  function createIterator() {
-    const next = () => {
+  this.createIterator = function () {
+    function next() {
       if (recCount < recTotal) {
         let person = persons[recCount];
         recCount += 1;
         return { value: person, done: false };
       }
       return { done: true };
-    };
+    }
     return {next};
-  }
-  
-  this[Symbol.iterator] = createIterator;
+  };
 }
 
-/*
-const query = new PersonQuery()[Symbol.iterator]();
+const query = new PersonQuery().createIterator();
 console.log(query.next());
 console.log(query.next());
 console.log(query.next());
 console.log(query.next());
-*/
-
-for (const record of new PersonQuery()) console.log(record);
-
 
 
 
