@@ -14,7 +14,3 @@ request.onerror = function (error) {
 };
 
 request.send();
-
-setTimeout(function(){
-  console.log("after a timeout of 1 second...");
-}, 1000);

@@ -11,28 +11,19 @@ function PersonQuery() {
   var recTotal = persons.length;
   
   function createIterator() {
-    
-    function next() {
+    const next = () => {
       if (recCount < recTotal) {
         let person = persons[recCount];
         recCount += 1;
         return { value: person, done: false };
       }
-      return {done: true};
-    }
-    
-    return {
-      next,
-      return(){
-        console.log("cleanup");
-        return { done: true };
-      }
-    }
-    
+      return { done: true };
+    };
+    return {next};
   }
   
-  this[Symbol.iterator] = createIterator;
   
+  this[Symbol.iterator] = createIterator;
 }
 
 /*
@@ -63,7 +54,3 @@ const minimum = Math.min(...numbers2);
 console.log(minimum);
 
 console.log(Math.max(...numbers1, ...numbers2));
-
-console.clear();
-const [ firstRecord2 ] = new PersonQuery();
-console.log(firstRecord2);
