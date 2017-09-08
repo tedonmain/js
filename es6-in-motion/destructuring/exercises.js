@@ -72,7 +72,9 @@ const person = {
 
 const {
   address: {
-    lines: [ ,line2 ]
+    lines: [ ,line2 ],
+    state: st
   }
 } = person;
 
+console.log(line2);

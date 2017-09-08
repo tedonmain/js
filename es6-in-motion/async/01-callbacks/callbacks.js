@@ -1,20 +1,38 @@
-const museumsDatasetUrl = "../../datasets/museums.json";
+let museumList = {};
 
-// Callback based web request:
-const request = new XMLHttpRequest();
-request.open("GET", museumsDatasetUrl);
-
-request.onload = function () {
-  const museums = JSON.parse(this.responseText);
-  console.log("xhr", museums);
+const museums = (address) => {
+  
+  const request = new XMLHttpRequest();
+  request.open("GET", address);
+  
+  request.onload = () => {
+    let museums = Object.assign(museumList,JSON.parse(request.responseText).map(m => m.name.__cdata + ': ' + m.address.__cdata + ': ' + m.phone.__cdata));
+    exp(museums);
+  };
+  
+  request.onerror = function (error) {
+    console.error(error);
+  };
+  
+  request.send();
+  
 };
 
-request.onerror = function (error) {
-  console.error(error);
+const exp = (exportThisList) => {
+  console.log(exportThisList);
 };
 
-request.send();
+museums("../../datasets/museums.json");
 
 setTimeout(function(){
-  console.log("after a timeout of 1 second...");
-}, 1000);
+  console.log("after a timeout of 3 seconds...here comes the museum list...");
+  console.log(museumList);
+}, 3000);
+
+setTimeout(function(){
+  console.log("after another timeout of an additional 3 seconds...here comes the museum list again ...");
+  for (let key in museumList) {
+    console.log(museumList[key]);
+  }
+}, 3000);
+
